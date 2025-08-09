@@ -127,7 +127,63 @@
   </div>
 
   <!-- Bootstrap JS -->
-  <script src="https://cdn.jsd
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Validation & Toasts Script -->
+  <script>
+    const form = document.getElementById('loginForm');
+    const username = document.getElementById('username');
+    const password = document.getElementById('password');
+
+    function showToast(message, type = 'success') {
+      const toast = document.createElement('div');
+      toast.className = `toast align-items-center text-bg-${type} border-0 show`;
+      toast.setAttribute('role', 'alert');
+      toast.setAttribute('aria-live', 'assertive');
+      toast.setAttribute('aria-atomic', 'true');
+
+      toast.innerHTML = `
+        <div class="d-flex">
+          <div class="toast-body">${message}</div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      `;
+
+      document.getElementById('toastContainer').appendChild(toast);
+      setTimeout(() => toast.remove(), 4000);
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      let valid = true;
+
+      if (username.value.trim().length < 4) {
+        username.classList.add('is-invalid');
+        valid = false;
+      } else {
+        username.classList.remove('is-invalid');
+      }
+
+      if (password.value.trim().length < 6) {
+        password.classList.add('is-invalid');
+        valid = false;
+      } else {
+        password.classList.remove('is-invalid');
+      }
+
+      if (valid) {
+        showToast('Login successful!', 'success');
+        setTimeout(() => {
+          window.location.href = "admin.html";
+        }, 1000);
+      } else {
+        showToast('Please fix errors and try again.', 'danger');
+      }
+    });
+  </script>
+</body>
+</html>
+
 
 
 
