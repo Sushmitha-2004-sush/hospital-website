@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard - Hospital</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f8f9fa;
+    }
+    .sidebar {
+      background-color: #234E70;
+      color: #fff;
+      min-height: 100vh;
+      padding-top: 1rem;
+    }
+    .sidebar .nav-link {
+      color: #fff;
+    }
+    .sidebar .nav-link:hover {
+      background-color: #1e3d59;
+    }
+    @media (max-width: 991px) {
+      .sidebar {
+        min-height: auto;
+      }
+    }
+    .chart-placeholder {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.05);
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container-fluid">
+  <div class="row flex-nowrap">
+    <!-- Sidebar -->
+    <nav class="col-auto col-md-3 col-lg-2 sidebar collapse d-lg-block" id="sidebarMenu">
+      <h4 class="text-center mb-4">HealthEase</h4>
+      <div class="nav flex-column px-3">
+        <a href="#addStaffSection" class="nav-link"><i class="fas fa-user-plus me-2"></i> Add Staff</a>
+        <a href="#staffAccountsSection" class="nav-link"><i class="fas fa-user-cog me-2"></i> Staff Accounts</a>
+        <a href="#staffDirectorySection" class="nav-link"><i class="fas fa-address-book me-2"></i> Staff Directory</a>
+        <a href="#" class="nav-link" id="logoutBtn"><i class="fas fa-sign-out-alt me-2"></i> Logout</a>
+      </div>
+    </nav>
+
+    <!-- Content -->
+    <main class="col px-4">
+      <!-- Topbar -->
+      <div class="d-flex justify-content-between align-items-center mt-3 mb-3">
+        <h3>Admin Panel</h3>
+        <button class="btn btn-outline-primary d-lg-none" data-bs-toggle="collapse" data-bs-target="#sidebarMenu">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="d-none d-lg-block">
+          <i class="fas fa-bell me-3"></i>
+          <i class="fas fa-user-circle"></i>
+        </div>
+      </div>
+
+      <!-- Add Staff Section -->
+      <div class="chart-placeholder" id="addStaffSection">
+        <h5>Add Staff Member</h5>
+        <form id="addStaffForm">
+          <div class="row g-3">
+            <div class="col-md-6 col-lg-3">
+              <input type="text" class="form-control" placeholder="Name" required>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <select class="form-control" required>
+                <option value="">Select Role</option>
+                <option>Doctor</option>
+                <option>Lab Technician</option>
+                <option>Pharmacist</option>
+                <option>Receptionist</option>
+              </select>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <input type="text" class="form-control" placeholder="Department">
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <input type="tel" class="form-control" placeholder="Contact Number" required>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-success mt-3">Add Staff</button>
+        </form>
+      </div>
+
+      <!-- Staff Accounts -->
+      <div class="chart-placeholder" id="staffAccountsSection">
+        <h5>Staff Accounts</h5>
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover">
+            <thead class="table-light">
+              <tr><th>Username</th><th>Role</th><th>Status</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>admin01</td><td>Admin</td><td>Active</td></tr>
+              <tr><td>dr.anil</td><td>Doctor</td><td>Active</td></tr>
+              <tr><td>nurse.asha</td><td>Nurse</td><td>Active</td></tr>
+              <tr><td>lab.arun</td><td>Lab Technician</td><td>Inactive</td></tr>
+              <tr><td>reception.ravi</td><td>Receptionist</td><td>Active</td></tr>
+              <tr><td>tech.vinod</td><td>Technician</td><td>Active</td></tr>
+              <tr><td>dr.priya</td><td>Doctor</td><td>Active</td></tr>
+              <tr><td>dr.rajesh</td><td>Doctor</td><td>Inactive</td></tr>
+              <tr><td>nurse.meena</td><td>Nurse</td><td>Active</td></tr>
+              <tr><td>dr.sneha</td><td>Doctor</td><td>Active</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Staff Directory -->
+      <div class="chart-placeholder" id="staffDirectorySection">
+        <h5>Staff Directory</h5>
+        <input type="text" class="form-control mb-3" placeholder="Search by name, role, or department">
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped">
+            <thead class="table-light">
+              <tr>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Contact</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Dr. Anil Kumar</td><td>Cardiologist</td><td>9876543210</td><td><button class="btn btn-sm btn-info">View</button></td></tr>
+              <tr><td>Dr. Priya Sharma</td><td>Pediatrician</td><td>9898989898</td><td><button class="btn btn-sm btn-info">View</button></td></tr>
+              <tr><td>Nurse Asha</td><td>Nurse</td><td>9789456123</td><td><button class="btn btn-sm btn-info">View</button></td></tr>
+              <tr><td>Arun</td><td>Lab Technician</td><td>9123456710</td><td><button class="btn btn-sm btn-info">View</button></td></tr>
+              <tr><td>Ravi</td><td>Receptionist</td><td>9764312345</td><td><button class="btn btn-sm btn-info">View</button></td></tr>
+              <tr><td>Vinod</td><td>Technician</td><td>9876554321</td><td><button class="btn btn-sm btn-info">View</button></td></tr>
+              <tr><td>Meena</td><td>Nurse</td><td>9001234567</td><td><button class="btn btn-sm btn-info">View</button></td></tr>
+              <tr><td>Dr. Rajesh Nair</td><td>Orthopedic</td><td>9632587412</td><td><button class="btn btn-sm btn-info">View</button></td></tr>
+              <tr><td>Dr. Sneha Roy</td><td>Dermatologist</td><td>9911223344</td><td><button class="btn btn-sm btn-info">View</button></td></tr>
+              <tr><td>Dr. Faizan Ali</td><td>Neurologist</td><td>9887766554</td><td><button class="btn btn-sm btn-info">View</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script>
+  document.getElementById('logoutBtn').addEventListener('click', function(e) {
+    e.preventDefault();
+    if (confirm("Are you sure you want to logout?")) {
+      window.location.href = "login.html";
+    }
+  });
+</script>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+
